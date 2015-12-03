@@ -1,0 +1,16 @@
+nginx:
+    image: nginx:latest
+    restart: always
+    ports:
+        - 8080:80
+    volumes:
+        - ./src:/var/www/html
+        - ./conf/vhost.conf:/etc/nginx/conf.d/vhost.conf
+    links:
+        - php
+
+php:
+    image: php:5.6-fpm
+    restart: always
+    volumes:
+        - ./src:/var/www/html
