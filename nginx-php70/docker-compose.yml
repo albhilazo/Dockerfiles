@@ -1,4 +1,4 @@
-nginx:
+web:
     image: nginx:latest
     restart: always
     ports:
