@@ -19,6 +19,18 @@ Default virtual host and port:
 http://php.dev:8080
 ```
 
+Stop containers:
+
+```shell
+$ docker-compose stop
+```
+
+Stop and remove:
+
+```shell
+$ docker-compose stop && docker-compose rm -v
+```
+
 
 ## Logs
 
