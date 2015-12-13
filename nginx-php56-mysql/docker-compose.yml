@@ -1,0 +1,30 @@
+web:
+    image: nginx:latest
+    restart: always
+    ports:
+        - 8080:80
+    volumes:
+        - ./src:/var/www/html
+        - ./conf/vhost.conf:/etc/nginx/conf.d/vhost.conf
+    links:
+        - php
+
+php:
+    build: php56-pdo
+    restart: always
+    volumes:
+        - ./src:/var/www/html
+    links:
+        - db
+
+db:
+    image: mysql:latest
+    restart: always
+    expose:
+        - 3306
+    volumes:
+        - ./db:/docker-entrypoint-initdb.d
+        - ./db/data:/var/lib/mysql-files
+    environment:
+        - MYSQL_ROOT_PASSWORD=
+        - MYSQL_ALLOW_EMPTY_PASSWORD=yes
